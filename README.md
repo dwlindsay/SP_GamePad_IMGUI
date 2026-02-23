@@ -108,9 +108,44 @@ void OnGUI()
     GUI.Box(new Rect(x1, y1, x2, y2), "joy");
 
 
+    void DrawLine(Vector2 start, Vector2 end, Texture2D texture, float thickness)
+    {
+        Vector2 dir = end - start;
+        float distance = dir.magnitude;
+        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+
+        GUIUtility.RotateAroundPivot(angle, start);
+        GUI.DrawTexture(new Rect(start.x, start.y - thickness / 2f, distance, thickness), texture);
+        GUIUtility.RotateAroundPivot(-angle, start);
+    }
+
+    void DrawCircle(Vector2 center, float radius, Texture2D texture, float thickness)
+    {
+        int segments = 64;
+        for (int i = 0; i < segments; i++)
+        {
+            float angle1 = (i / (float)segments) * 2f * Mathf.PI;
+            float angle2 = ((i + 1) / (float)segments) * 2f * Mathf.PI;
+
+            Vector2 p1 = center + new Vector2(Mathf.Cos(angle1), Mathf.Sin(angle1)) * radius;
+            Vector2 p2 = center + new Vector2(Mathf.Cos(angle2), Mathf.Sin(angle2)) * radius;
+
+            DrawLine(p1, p2, texture, thickness);
+        }
+    }
 
 
+    Texture2D MakeTex(int width, int height, Color col)
+    {
+        Color[] pix = new Color[width * height];
+        for (int i = 0; i < pix.Length; i++)
+            pix[i] = col;
 
+        Texture2D result = new Texture2D(width, height);
+        result.SetPixels(pix);
+        result.Apply();
+        return result;
+    }
 }
 
 
