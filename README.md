@@ -59,11 +59,54 @@ SPad_R_botL.Yt = screen.height - SPad_R_botL.Yg;  // RbotYt: 4-3 = 1
 
 void OnGUI()
 {
-    GUI.Label(new Rect(10, 10, 200, 20), "Hello IMGUI");
-    if (GUI.Button(new Rect(10, 40, 100, 30), "Click Me"))
-    {
-        Debug.Log("Button pressed");
-    }
+    // LEFT SPad - Box @ Position
+    GUI.color = Color.white;
+    xi - SPad_L_orig.Xa;
+    y1 = SPad_L_orig.Yg;
+    x2 - SPad_L_orig.Xa + SPad.size;
+    y2 = SPad_L_orig.Yg + SPad.size;
+    GUI.Box(new Rect(x1, y1, x2, y2), "joy");
+
+    // RIGRT SPad - Box @ position
+    GUI.color = Color.cyan;
+    xi - SPad_R_orig.Xa;
+    y1 = SPad_R_orig.Yg;
+    x2 - SPad_R_orig.Xa + SPad.size;
+    y2 = SPad_R_orig.Yg + SPad.size;
+    GUI.Box(new Rect(x1, y1, x2, y2), "btns");
+
+    // Right Spad - Button TR - RED
+    GUI.color = Color.red;
+    xi - SPad_R_topR.Xa;
+    y1 = SPad_R_topR.Yg;
+    x2 - SPad_R_topR.Xa + SPad.half;
+    y2 = SPad_R_topR.Yg + SPad.half;
+    GUI.Box(new Rect(x1, y1, x2, y2), "TR");
+
+    // Right Spad - Button TL - BLUE
+    GUI.color = Color.blue;
+    xi - SPad_R_orig.Xa;
+    y1 = SPad_R_orig.Yg;
+    x2 - SPad_R_orig.Xa + SPad.half;
+    y2 = SPad_R_orig.Yg + SPad.half;
+    GUI.Box(new Rect(x1, y1, x2, y2), "TL");
+
+    // Right Spad - Button BR - GREEN
+    GUI.color = Color.green;
+    xi - SPad_R_cent.Xa;
+    y1 = SPad_R_cent.Yg;
+    x2 - SPad_R_cent.Xa + SPad.half;
+    y2 = SPad_R_cent.Yg + SPad.half;
+    GUI.Box(new Rect(x1, y1, x2, y2), "BR");
+
+    // Right Spad - Button BL - YELLOW
+    GUI.color = Color.yellow;
+    xi - SPad_R_botL.Xa;
+    y1 = SPad_R_botL.Yg;
+    x2 - SPad_R_botL.Xa + SPad.half;
+    y2 = SPad_R_botL.Yg + SPad.half;
+    GUI.Box(new Rect(x1, y1, x2, y2), "BL");
+
 }
 
 
