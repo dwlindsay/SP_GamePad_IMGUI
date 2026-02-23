@@ -17,6 +17,6 @@ SPad placement on a TABLET
 │   O   │       │   ┼   │  
 └───┴───┴───┘  
 
-This code (in the .cs file within this repo) was manually entered
-with the intent that it be cut/pasted into the actual code by a
-skilled developer, like Josh (not Don).
+This code (in the .cs file within this repo) was manually entered  
+with the intent that it be cut/pasted into the actual code by a  
+skilled developer, like Josh (not Don).            
