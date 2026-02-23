@@ -12,6 +12,9 @@ public class Pcode : MonoBehaviour
     private float joystickRadius;
     private Vector2 joystickCenter;
 
+    private Texture2D blackTexture;
+    private Texture2D whiteTexture;
+
     private int x1,y1,x2,y2;
     
     private int SPad_size;
