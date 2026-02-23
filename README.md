@@ -2,6 +2,21 @@
 
 *IMGUI Pseudocode for ps_GamePad GUI*
 
+
+SPad placement on a PHONE  
+┌───┬─┬───┐  
+│   O   │  │   ┼   │  
+└───┴─┴───┘  
+
+SPad placement on a TABLET  
+┌───────────┐  
+│                             │    
+├───┐        ┌───┤  
+│   O   │       │   ┼   │  
+└───┴───┴───┘  
+
+
+
 ```csharp
 
 // Set Orientation to LANDSCAPE orientation
