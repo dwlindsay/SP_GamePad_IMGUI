@@ -1,11 +1,16 @@
 // Copyright 2026 Screen Play
 
+using UnityEngine;
+
 // Set Orientation to LANDSCAPE orientation
 //                                               // Height: 4
 //                                               // Width: 6
 
-void Start()
+public class Pcode : MonoBehaviour
 {
+
+    private float joystickRadius;
+    private Vector2 joystickCenter;
 
     private int x1,y1,x2,y2;
     
@@ -45,6 +50,18 @@ void Start()
     private int    SPad_R_botL_Xa = SPad_R_orig_Xa;                  // RbotXa: 4 = 4
     private int    SPad_R_botL_Yg = SPad_R_orig_Yg + SPad_half;      // RbotYg: 2+1 = 3
     private int    SPad_R_botL_Yt = screen.height - SPad_R_botL_Yg;  // RbotYt: 4-3 = 1
+
+
+void Start()
+{
+    // Create solid color textures
+    blackTexture = MakeTex(2, 2, Color.black);
+    whiteTexture = MakeTex(2, 2, Color.white);
+
+    joystickRadius = SPad_size / 2f;
+    joystickCenter = new Vector2(SPad_L_cent_Xa, Screen.height / 2f);;
+        
+} // END Start()
 
 void OnGUI()
 {
@@ -88,13 +105,21 @@ void OnGUI()
     y2 = SPad_R_botL_Yg + SPad_half;
     GUI.Box(new Rect(x1, y1, x2, y2), "BL");
 
-    // LEFT SPad - Box @ Position
-    GUI.color = Color.white;
+    // LEFT SPad - Box @ Position - CYAN
+    GUI.color = Color.cyan;
     xi - SPad_L_orig_Xa;
     y1 = SPad_L_orig_Yg;
     x2 - SPad_L_orig_Xa + SPad_size;
     y2 = SPad_L_orig_Yg + SPad_size;
     GUI.Box(new Rect(x1, y1, x2, y2), "joy");
+
+    // LEFT SPad - Circle filled - BLACK
+    DrawFilledCircle(joystickCenter, joystickRadius, Color.black);
+
+    // LEFT SPad - White Ring 5-wide - WHITE
+    DrawCircle(screenCenter, joystickRadius-5f, whiteTexture, 5f);
+
+} // END OnGUI()
 
 
     void DrawLine(Vector2 start, Vector2 end, Texture2D texture, float thickness)
@@ -123,6 +148,31 @@ void OnGUI()
         }
     }
 
+    void DrawFilledCircle(Vector2 center, float radius, Color color)
+    {
+        Texture2D tex = MakeTex(2, 2, color);
+        int segments = 32;
+
+        for (int i = 0; i < segments; i++)
+        {
+            float angle1 = (i / (float)segments) * 2f * Mathf.PI;
+            float angle2 = ((i + 1) / (float)segments) * 2f * Mathf.PI;
+
+            Vector2 p1 = center;
+            Vector2 p2 = center + new Vector2(Mathf.Cos(angle1), Mathf.Sin(angle1)) * radius;
+            Vector2 p3 = center + new Vector2(Mathf.Cos(angle2), Mathf.Sin(angle2)) * radius;
+
+            DrawTriangle(p1, p2, p3, tex);
+        }
+    }
+
+    void DrawTriangle(Vector2 p1, Vector2 p2, Vector2 p3, Texture2D texture)
+    {
+        Vector2 min = Vector2.Min(Vector2.Min(p1, p2), p3);
+        Vector2 max = Vector2.Max(Vector2.Max(p1, p2), p3);
+
+        GUI.DrawTexture(new Rect(min.x, min.y, max.x - min.x, max.y - min.y), texture);
+    }
 
     Texture2D MakeTex(int width, int height, Color col)
     {
