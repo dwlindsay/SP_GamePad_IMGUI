@@ -1,90 +1,99 @@
+// Copyright 2026 Screen Play
 
 // Set Orientation to LANDSCAPE orientation
 //                                               // Height: 4
 //                                               // Width: 6
 
-if (screen.height <= screen.width / 2)
+void Start()
 {
-    SPad.size = screen.height
-} else {
-    SPad.size = screen.height / 2;                // Size: 2
-}
-SPad.half = SPad.size / 2;                        // Half: 1
 
-// Xa is X-All   // Xd is X-Draw  // Xt is X-Touch
+    private int x1,y1,x2,y2;
+    
+    private int SPad_size;
+    private int SPad_half;
+    
+    if (screen.height <= screen.width / 2)
+    {
+        SPad_size = screen.height
+    } else {
+        SPad_size = screen.height / 2;                // Size: 2
+    }
+    SPad_half = SPad_size / 2;                        // Half: 1
 
-SPad_L_orig.Xa = 0;                                // LorigXa: 0 = 0
-SPad_L_orig.Yg = screen.height - SPad.size;        // LorigYg: 4-2 = 2
-SPad_L_orig.Yt = screen.height - SPad_L_orig.Yg;   // LorigYt: 4-2 = 2
+    // Xa is X-All   // Xd is X-Draw  // Xt is X-Touch
 
-SPad_L_cent.Xa = SPad_L_orig.Xa + SPad.half;       // LcentXa: 0+1 = 1
-SPad_L_cent.Yg = SPad_L_orig.Yg + SPad.half;       // LcentYg: 2+1 = 3
-SPad_L_cent.Yt = screen.height - SPad_L_cent.Yg;   // LcentYt: 4-3 = 1
+    private int    SPad_L_orig_Xa = 0;                                // LorigXa: 0 = 0
+    private int    SPad_L_orig_Yg = screen.height - SPad_size;        // LorigYg: 4-2 = 2
+    private int    SPad_L_orig_Yt = screen.height - SPad_L_orig_Yg;   // LorigYt: 4-2 = 2
 
-SPad_R_orig.Xa = screen.width - SPad.size;        // RorigXa: 6-2 = 4
-SPad_R_orig.Yg = screen.height - SPad.size;       // RorigYg: 4-2 = 2
-SPad_R_orig.Yt = screen.height - SPad_R_orig.Yg;  // RorigYt: 4-2 = 2
+    private int    SPad_L_cent_Xa = SPad_L_orig_Xa + SPad_half;       // LcentXa: 0+1 = 1
+    private int    SPad_L_cent_Yg = SPad_L_orig_Yg + SPad_half;       // LcentYg: 2+1 = 3
+    private int    SPad_L_cent_Yt = screen.height - SPad_L_cent_Yg;   // LcentYt: 4-3 = 1
 
-SPad_R_cent.Xa = screen.width - SPad.half;        // RcentXa: 6-1 = 5
-SPad_R_cent.Yg = screen.height - SPad.half;       // RcentYg: 4-1 = 3
-SPad_R_cent.Yt = screen.height - SPad_R_cent.Yg;  // Rcentt: 4-3 = 1
+    private int    SPad_R_orig_Xa = screen.width - SPad_size;        // RorigXa: 6-2 = 4
+    private int    SPad_R_orig_Yg = screen.height - SPad_size;       // RorigYg: 4-2 = 2
+    private int    SPad_R_orig_Yt = screen.height - SPad_R_orig_Yg;  // RorigYt: 4-2 = 2
 
-SPad_R_topR.Xa = SPad_R_orig.Xa + SPad.half;      // RtopXa: 4+1 = 5
-SPad_R_topR.Yg = SPad_R_orig.Yg;                  // RtopYg: 2 = 2
-SPad_R_topR.Yt = screen.height - SPad_R_topR.Yg;  // RtopYt: 4-2 = 2
+    private int    SPad_R_cent_Xa = screen.width - SPad_half;        // RcentXa: 6-1 = 5
+    private int    SPad_R_cent_Yg = screen.height - SPad_half;       // RcentYg: 4-1 = 3
+    private int    SPad_R_cent_Yt = screen.height - SPad_R_cent_Yg;  // Rcentt: 4-3 = 1
 
-SPad_R_botL.Xa = SPad_R_orig.Xa;                  // RbotXa: 4 = 4
-SPad_R_botL.Yg = SPad_R_orig.Yg + SPad.half;      // RbotYg: 2+1 = 3
-SPad_R_botL.Yt = screen.height - SPad_R_botL.Yg;  // RbotYt: 4-3 = 1
+    private int    SPad_R_topR_Xa = SPad_R_orig_Xa + SPad_half;      // RtopXa: 4+1 = 5
+    private int    SPad_R_topR_Yg = SPad_R_orig_Yg;                  // RtopYg: 2 = 2
+    private int    SPad_R_topR_Yt = screen.height - SPad_R_topR_Yg;  // RtopYt: 4-2 = 2
+
+    private int    SPad_R_botL_Xa = SPad_R_orig_Xa;                  // RbotXa: 4 = 4
+    private int    SPad_R_botL_Yg = SPad_R_orig_Yg + SPad_half;      // RbotYg: 2+1 = 3
+    private int    SPad_R_botL_Yt = screen.height - SPad_R_botL_Yg;  // RbotYt: 4-3 = 1
 
 void OnGUI()
 {
     // RIGRT SPad - Box @ position
     GUI.color = Color.cyan;
-    xi - SPad_R_orig.Xa;
-    y1 = SPad_R_orig.Yg;
-    x2 - SPad_R_orig.Xa + SPad.size;
-    y2 = SPad_R_orig.Yg + SPad.size;
+    xi - SPad_R_orig_Xa;
+    y1 = SPad_R_orig_Yg;
+    x2 - SPad_R_orig_Xa + SPad_size;
+    y2 = SPad_R_orig_Yg + SPad_size;
     GUI.Box(new Rect(x1, y1, x2, y2), "btns");
 
     // RIGHT Spad - Button TR - RED
     GUI.color = Color.red;
-    xi - SPad_R_topR.Xa;
-    y1 = SPad_R_topR.Yg;
-    x2 - SPad_R_topR.Xa + SPad.half;
-    y2 = SPad_R_topR.Yg + SPad.half;
+    xi - SPad_R_topR_Xa;
+    y1 = SPad_R_topR_Yg;
+    x2 - SPad_R_topR_Xa + SPad_half;
+    y2 = SPad_R_topR_Yg + SPad_half;
     GUI.Box(new Rect(x1, y1, x2, y2), "TR");
 
     // RIGHT Spad - Button TL - BLUE
     GUI.color = Color.blue;
-    xi - SPad_R_orig.Xa;
-    y1 = SPad_R_orig.Yg;
-    x2 - SPad_R_orig.Xa + SPad.half;
-    y2 = SPad_R_orig.Yg + SPad.half;
+    xi - SPad_R_orig_Xa;
+    y1 = SPad_R_orig_Yg;
+    x2 - SPad_R_orig_Xa + SPad_half;
+    y2 = SPad_R_orig_Yg + SPad_half;
     GUI.Box(new Rect(x1, y1, x2, y2), "TL");
 
     // RIGHT Spad - Button BR - GREEN
     GUI.color = Color.green;
-    xi - SPad_R_cent.Xa;
-    y1 = SPad_R_cent.Yg;
-    x2 - SPad_R_cent.Xa + SPad.half;
-    y2 = SPad_R_cent.Yg + SPad.half;
+    xi - SPad_R_cent_Xa;
+    y1 = SPad_R_cent_Yg;
+    x2 - SPad_R_cent_Xa + SPad_half;
+    y2 = SPad_R_cent_Yg + SPad_half;
     GUI.Box(new Rect(x1, y1, x2, y2), "BR");
 
     // RIGHT Spad - Button BL - YELLOW
     GUI.color = Color.yellow;
-    xi - SPad_R_botL.Xa;
-    y1 = SPad_R_botL.Yg;
-    x2 - SPad_R_botL.Xa + SPad.half;
-    y2 = SPad_R_botL.Yg + SPad.half;
+    xi - SPad_R_botL_Xa;
+    y1 = SPad_R_botL_Yg;
+    x2 - SPad_R_botL_Xa + SPad_half;
+    y2 = SPad_R_botL_Yg + SPad_half;
     GUI.Box(new Rect(x1, y1, x2, y2), "BL");
 
     // LEFT SPad - Box @ Position
     GUI.color = Color.white;
-    xi - SPad_L_orig.Xa;
-    y1 = SPad_L_orig.Yg;
-    x2 - SPad_L_orig.Xa + SPad.size;
-    y2 = SPad_L_orig.Yg + SPad.size;
+    xi - SPad_L_orig_Xa;
+    y1 = SPad_L_orig_Yg;
+    x2 - SPad_L_orig_Xa + SPad_size;
+    y2 = SPad_L_orig_Yg + SPad_size;
     GUI.Box(new Rect(x1, y1, x2, y2), "joy");
 
 
