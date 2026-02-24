@@ -20,6 +20,36 @@ public class Pcode : MonoBehaviour
     private int SPad_size;
     private int SPad_half;
     
+    // Xa is X-All   // Xd is X-Draw  // Xt is X-Touch
+
+    private int    SPad_L_orig_Xa;
+    private int    SPad_L_orig_Yg;
+    private int    SPad_L_orig_Yt;
+
+    private int    SPad_L_cent_Xa;
+    private int    SPad_L_cent_Yg;
+    private int    SPad_L_cent_Yt;
+
+    private int    SPad_R_orig_Xa;
+    private int    SPad_R_orig_Yg;
+    private int    SPad_R_orig_Yt;
+
+    private int    SPad_R_cent_Xa;
+    private int    SPad_R_cent_Yg;
+    private int    SPad_R_cent_Yt;
+
+    private int    SPad_R_topR_Xa;
+    private int    SPad_R_topR_Yg;
+    private int    SPad_R_topR_Yt;
+
+    private int    SPad_R_botL_Xa;
+    private int    SPad_R_botL_Yg;
+    private int    SPad_R_botL_Yt;
+
+//============================================================================================================
+void Start()
+{
+
     if (screen.height <= screen.width / 2)
     {
         SPad_size = screen.height
@@ -28,44 +58,40 @@ public class Pcode : MonoBehaviour
     }
     SPad_half = SPad_size / 2;                        // Half: 1
 
-    // Xa is X-All   // Xd is X-Draw  // Xt is X-Touch
+    SPad_L_orig_Xa = 0;                                // LorigXa: 0 = 0
+    SPad_L_orig_Yg = screen.height - SPad_size;        // LorigYg: 4-2 = 2
+    SPad_L_orig_Yt = screen.height - SPad_L_orig_Yg;   // LorigYt: 4-2 = 2
 
-    private int    SPad_L_orig_Xa = 0;                                // LorigXa: 0 = 0
-    private int    SPad_L_orig_Yg = screen.height - SPad_size;        // LorigYg: 4-2 = 2
-    private int    SPad_L_orig_Yt = screen.height - SPad_L_orig_Yg;   // LorigYt: 4-2 = 2
+    SPad_L_cent_Xa = SPad_L_orig_Xa + SPad_half;       // LcentXa: 0+1 = 1
+    SPad_L_cent_Yg = SPad_L_orig_Yg + SPad_half;       // LcentYg: 2+1 = 3
+    SPad_L_cent_Yt = screen.height - SPad_L_cent_Yg;   // LcentYt: 4-3 = 1
 
-    private int    SPad_L_cent_Xa = SPad_L_orig_Xa + SPad_half;       // LcentXa: 0+1 = 1
-    private int    SPad_L_cent_Yg = SPad_L_orig_Yg + SPad_half;       // LcentYg: 2+1 = 3
-    private int    SPad_L_cent_Yt = screen.height - SPad_L_cent_Yg;   // LcentYt: 4-3 = 1
+    SPad_R_orig_Xa = screen.width - SPad_size;        // RorigXa: 6-2 = 4
+    SPad_R_orig_Yg = screen.height - SPad_size;       // RorigYg: 4-2 = 2
+    SPad_R_orig_Yt = screen.height - SPad_R_orig_Yg;  // RorigYt: 4-2 = 2
 
-    private int    SPad_R_orig_Xa = screen.width - SPad_size;        // RorigXa: 6-2 = 4
-    private int    SPad_R_orig_Yg = screen.height - SPad_size;       // RorigYg: 4-2 = 2
-    private int    SPad_R_orig_Yt = screen.height - SPad_R_orig_Yg;  // RorigYt: 4-2 = 2
+    SPad_R_cent_Xa = screen.width - SPad_half;        // RcentXa: 6-1 = 5
+    SPad_R_cent_Yg = screen.height - SPad_half;       // RcentYg: 4-1 = 3
+    SPad_R_cent_Yt = screen.height - SPad_R_cent_Yg;  // Rcentt: 4-3 = 1
 
-    private int    SPad_R_cent_Xa = screen.width - SPad_half;        // RcentXa: 6-1 = 5
-    private int    SPad_R_cent_Yg = screen.height - SPad_half;       // RcentYg: 4-1 = 3
-    private int    SPad_R_cent_Yt = screen.height - SPad_R_cent_Yg;  // Rcentt: 4-3 = 1
+    SPad_R_topR_Xa = SPad_R_orig_Xa + SPad_half;      // RtopXa: 4+1 = 5
+    SPad_R_topR_Yg = SPad_R_orig_Yg;                  // RtopYg: 2 = 2
+    SPad_R_topR_Yt = screen.height - SPad_R_topR_Yg;  // RtopYt: 4-2 = 2
 
-    private int    SPad_R_topR_Xa = SPad_R_orig_Xa + SPad_half;      // RtopXa: 4+1 = 5
-    private int    SPad_R_topR_Yg = SPad_R_orig_Yg;                  // RtopYg: 2 = 2
-    private int    SPad_R_topR_Yt = screen.height - SPad_R_topR_Yg;  // RtopYt: 4-2 = 2
-
-    private int    SPad_R_botL_Xa = SPad_R_orig_Xa;                  // RbotXa: 4 = 4
-    private int    SPad_R_botL_Yg = SPad_R_orig_Yg + SPad_half;      // RbotYg: 2+1 = 3
-    private int    SPad_R_botL_Yt = screen.height - SPad_R_botL_Yg;  // RbotYt: 4-3 = 1
-
-
-void Start()
-{
+    SPad_R_botL_Xa = SPad_R_orig_Xa;                  // RbotXa: 4 = 4
+    SPad_R_botL_Yg = SPad_R_orig_Yg + SPad_half;      // RbotYg: 2+1 = 3
+    SPad_R_botL_Yt = screen.height - SPad_R_botL_Yg;  // RbotYt: 4-3 = 1
+    
     // Create solid color textures
     blackTexture = MakeTex(2, 2, Color.black);
     whiteTexture = MakeTex(2, 2, Color.white);
 
     joystickRadius = SPad_size / 2f;
-    joystickCenter = new Vector2(SPad_L_cent_Xa, Screen.height / 2f);;
-        
+    joystickCenter = new Vector2(SPad_L_cent_Xa, Screen.height / 2f);
+
 } // END Start()
 
+//============================================================================================================
 void OnGUI()
 {
     // RIGRT SPad - Box @ position
@@ -122,8 +148,10 @@ void OnGUI()
     // LEFT SPad - White Ring 5-wide - WHITE
     DrawCircle(screenCenter, joystickRadius-5f, whiteTexture, 5f);
 
-} // END OnGUI()
+} // END of OnGUI()
 
+//============================================================================================================
+// ADVANCED DRAWING UTILITY METHODS
 
     void DrawLine(Vector2 start, Vector2 end, Texture2D texture, float thickness)
     {
@@ -188,5 +216,29 @@ void OnGUI()
         result.Apply();
         return result;
     }
-}
 
+
+//============================================================================================================
+// INTERPRETING TOUCH AREAS
+
+    Boolean Button_ANY(int Xt, int Yt)
+    {
+        Boolean result = false;
+        if (Xt > SPad_R_orig_Xa ) && (Yt < SPad_R_orig_Yt ) 
+        {
+              result = true;
+        }
+        return result;
+    } 
+
+    Boolean Button_BR(int Xt, int Yt)
+    {
+        Boolean result = false;
+        if (Xt > SPad_R_cent_Xa ) && (Yt < SPad_R_cent_Yt ) 
+        {
+              result = true;
+        }
+        return result;
+    } 
+
+}  // END of CLASS
