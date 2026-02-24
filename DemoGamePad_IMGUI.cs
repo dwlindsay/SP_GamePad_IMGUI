@@ -221,7 +221,7 @@ void OnGUI()
 //============================================================================================================
 // INTERPRETING TOUCH AREAS
 
-    Boolean Button_ANY(int Xt, int Yt)
+    Boolean ANY_ButtonTouched(int Xt, int Yt)
     {
         Boolean result = false;
         if (Xt > SPad_R_orig_Xa ) && (Yt < SPad_R_orig_Yt ) 
@@ -231,7 +231,7 @@ void OnGUI()
         return result;
     } 
 
-    Boolean Button_BR(int Xt, int Yt)
+    Boolean BR_ButtonTouched(int Xt, int Yt)
     {
         Boolean result = false;
         if (Xt > SPad_R_cent_Xa ) && (Yt < SPad_R_cent_Yt ) 
