@@ -8,7 +8,7 @@ The c# code containing the OnGUI() method
 
 The logo in the circle with transparent corners PNG file is
 
-**filename.PNG**
+**SP_Logo within Circle.png**
 
 This code algorithmically calculates the positions of the
 SPad boxes based on screen resolution (pixel height & width)
